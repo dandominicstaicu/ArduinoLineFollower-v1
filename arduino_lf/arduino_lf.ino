@@ -1,6 +1,3 @@
-
-#include <Arduino.h>
-
 void citesteSenzori();
 void controlMotoare();
 void ajustareTraiectorie();
@@ -35,19 +32,19 @@ void citesteSenzori() {
 
 void controlMotoare() {
     digitalWrite(output_PD4, (int)1);
-    digitalWrite(output_PD4, (int)0);
-    digitalWrite(output_PD4, (int)0);
-    digitalWrite(output_PD4, (int)1);
+    digitalWrite(output_PD5, (int)0);
+    digitalWrite(output_PD6, (int)0);
+    digitalWrite(output_PD7, (int)1);
     if (ajustare == 0 ) {
         analogWrite(output_PWM9, (int)60);
-        analogWrite(output_PWM9, (int)60);
+        analogWrite(output_PWM10, (int)60);
     } else {
         if (ajustare == -1 ) {
             analogWrite(output_PWM9, (int)60);
-            analogWrite(output_PWM9, (int)0);
+            analogWrite(output_PWM10, (int)0);
         } else {
             analogWrite(output_PWM9, (int)0);
-            analogWrite(output_PWM9, (int)60);
+            analogWrite(output_PWM10, (int)60);
         }
     }
 }

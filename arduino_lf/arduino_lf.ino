@@ -24,10 +24,10 @@ int output_PWM9 = 9;
 
 void citesteSenzori() {
     SA0 = analogRead(input_SA0);
-    SA1 = analogRead(input_SA0);
-    SA2 = analogRead(input_SA0);
-    SA3 = analogRead(input_SA0);
-    SA4 = analogRead(input_SA0);
+    SA1 = analogRead(input_SA1);
+    SA2 = analogRead(input_SA2);
+    SA3 = analogRead(input_SA3);
+    SA4 = analogRead(input_SA4);
 }
 
 void controlMotoare() {
@@ -56,7 +56,7 @@ void ajustareTraiectorie() {
         if ( (SA0 < 200 ) || (SA1 < 200 ) ) {
             ajustare = 1;
         } else {
-            if ( (SA3 < 200 ) || (SA4 == 200 ) ) {
+            if ( (SA3 < 200 ) || (SA4 < 200 ) ) {
                 ajustare = -1;
             }
         }

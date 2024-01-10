@@ -9,77 +9,6 @@ double errorInt;
 #define baseSpeed 80.00
 #define nearLineModifier 0.50
 
-/*
-best 1
-KP 6
-KD 500 
-KI 0.1
-base speed 25
-
-best 2 
-#define KP 6.0
-#define KD 560
-#define KI 0.1
-#define baseSpeed 25.0
-#define nearLineModifier 1.0
-
-
-best 3 
-#define KP 3.00
-#define KD 580.0
-#define KI 0.0
-#define baseSpeed 25.0
-#define nearLineModifier 1.0
-
-19s
-best 4
-#define KP 6.00
-#define KD 580.00
-#define KI 0.00
-#define baseSpeed 30.00
-#define nearLineModifier 0.5
-
-16.50s
-
-best 5
-#define KP 6.00
-#define KD 580.00
-#define KI 0.00
-#define baseSpeed 30.00
-#define nearLineModifier 0.5
-
-15.05s
-best 6 - extensie 
-#define KP 6.00
-#define KD 580.00
-#define KI 0.00
-#define baseSpeed 30.00
-#define nearLineModifier 0.5
-
-#define KP 17.00
-#define KD 600.00
-#define KI 0.00
-#define baseSpeed 70.00
-#define nearLineModifier 0.50
-10.6s
-
-///prototype
-#define KP 31.00
-#define KD 810.00
-#define KI 0.00
-#define baseSpeed 100.00
-#define nearLineModifier 0.60
-
-best of best 
-#define KP 17.00
-#define KD 600.00
-#define KI 0.00
-#define baseSpeed 80.00
-#define nearLineModifier 0.50
-
-10.3s
-*/
-
 struct motor
 {
 
@@ -223,17 +152,6 @@ struct lineSensor
    
   } 
 
-  /* void LineValueAnalyzer(){
-    leftValue = digitalRead(leftSensorPIN);
-    leftCenterValue = digitalRead(leftCenterSensorPIN);
-    centerValue = digitalRead(centerSensorPIN);
-    rightCenterValue = digitalRead(rightCenterSensorPIN);
-    rightValue = digitalRead(rightSensorPIN);
-    globalLineValue = (double)((3)*leftValue+(1)*leftCenterValue+(-1)*rightCenterValue+(-3)*rightValue);
-    if(!noDetection())
-    lastGlobalLineValue = globalLineValue;
-  } 
- */
   bool noDetection()
   {
     leftValue = digitalRead(leftSensorPIN);
@@ -330,8 +248,7 @@ double PID(int input)
 void loop()
 {
   lineSensorModule.LineValueAnalyzer();
-  //Serial.println("LEFT   Internal Power : "+(String)Left.internalPower+"  Power:"+(String)Left.mappedPower +
-  //               "     RIGHT   Internal Power : "+(String)Right.internalPower+"  Power:"+(String)Right.mappedPower);
+
   Left.setPower(baseSpeed - PID(lineSensorModule.returnLineValue()));
   Right.setPower(baseSpeed + PID(lineSensorModule.returnLineValue()));
 }
